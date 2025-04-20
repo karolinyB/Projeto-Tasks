@@ -1,2 +1,2 @@
 # Projeto-Tasks
-Projeto para controle de usuários de um sistema qualquer
+Controle de atividades do dia a dia (tarefas)
