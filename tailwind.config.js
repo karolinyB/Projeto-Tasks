@@ -7,7 +7,7 @@
   theme: {
     extend: {
       fontFamily: {
-        jetbrains: ['"JetBrains Mono"', 'monospace'],
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },
