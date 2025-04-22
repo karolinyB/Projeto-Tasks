@@ -9,13 +9,11 @@ export default function NhostStatus() {
                     query {
                             tb_task 
                             {
-                                tb_task_description
-                                tb_task_id
                                 tb_task_is_completed
                                 tb_task_title
                             }
                         }
-                `)
+                `);
 
                 if (result.error) {
                     console.log("❌ Conexão falhou");

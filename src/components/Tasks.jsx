@@ -12,8 +12,8 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
         // Permite obter os dados por parâmetros de forma mais segura
         const query = new URLSearchParams();
 
-        query.set("title", task.title);
-        query.set("description", task.description);
+        query.set("title", task.tb_task_title);
+        query.set("description", task.tb_task_description);
 
         navigate(`/taskDetails?${query.toString()}`);
     }
@@ -22,15 +22,15 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
         <ul className="space-y-3 p-6 bg-zinc-800 rounded-md">
             {
                 tasks.map((task) => (
-                    <li key={task.id} className="flex gap-2 text-sm">
+                    <li key={task.tb_task_id} className="flex gap-2 text-sm">
                         <ButtonTask
-                            onClick={() => onTaskClick(task.id)}
+                            onClick={() => onTaskClick(task.tb_task_id, task.tb_task_is_completed)}
                             className={
                                 `text-zinc-800 text-left bg-violet-300 p-2 rounded-md shadow w-full
-                                ${task.isCompleted && "line-through"}`
+                                ${task.tb_task_is_completed && "line-through"}`
                             }
                         >
-                            {task.title}
+                            {task.tb_task_title}
                         </ButtonTask>
 
                         <ButtonOptions
@@ -41,7 +41,7 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
                         </ButtonOptions>
 
                         <ButtonOptions
-                            onClick={() => onDeleteTaskClick(task.id)}
+                            onClick={() => onDeleteTaskClick(task.tb_task_id)}
                         >
                             <Trash />
                         </ButtonOptions>

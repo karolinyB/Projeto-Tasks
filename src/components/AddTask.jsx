@@ -21,7 +21,7 @@ function AddTask({ onAddTaskClick }) {
             />
             <button
                 className="p-2 bg-rose-700 rounded-md text-slate-100"
-                onClick={() => {
+                onClick={ () => {
 
                     // Verifica se o titulo e descrição estão preenchidos
                     // trim() -> considera espaços em branco

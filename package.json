@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
+    "@nhost/apollo": "^8.0.7",
     "@nhost/react": "^3.10.3",
+    "@nhost/react-apollo": "^17.0.3",
     "graphql": "^16.10.0",
     "lucide-react": "^0.435.0",
     "react": "^18.3.1",
