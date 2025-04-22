@@ -21,7 +21,7 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
     return (
         <ul className="space-y-3 p-6 bg-zinc-800 rounded-md">
             {
-                tasks.map((task) => (
+                tasks?.filter(Boolean).map((task) => (
                     <li key={task.tb_task_id} className="flex gap-2 text-sm">
                         <ButtonTask
                             onClick={() => onTaskClick(task.tb_task_id, task.tb_task_is_completed)}

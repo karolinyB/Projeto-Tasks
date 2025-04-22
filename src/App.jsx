@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
-import { v4 } from "uuid";
 import Title from "./components/CTitle";
 import Test from "./components/Test";
 import { nhost } from "./lib/nhost";
 import { useSubscription, useMutation } from '@apollo/client';
-import { INSERT_TASK } from "./graphql/mutations";
+import { DELETE_TASK, INSERT_TASK } from "./graphql/mutations";
 import { GET_TASKS } from "./graphql/subscriptions";
 import { UPDATE_TASK_STATUS_COMPLETED } from "./graphql/mutations";
 
@@ -14,7 +13,7 @@ function App() {
 
 
   //Hooks
-  const { data: subscriptionData, error: subscriptionError } = useSubscription(GET_TASKS);
+  const { data: subscriptionData } = useSubscription(GET_TASKS);
 
   const [tasks, setTasks] = useState([]);
   const [updateTask] = useMutation(UPDATE_TASK_STATUS_COMPLETED);
@@ -45,7 +44,7 @@ function App() {
     // passar à próxima instrução.
 
     // Função Síncrona -> é uma função que executa linha por linha de forma imediata, sem agurdar por nada externo.
-    async function fetchTasks() {
+    /*async function fetchTasks() {
 
       // Chamar a API
 
@@ -66,7 +65,7 @@ function App() {
 
     }
 
-    //fetchTasks();
+    //fetchTasks();*/
   }, [])
 
   async function onAddTaskClick(title, description) {
@@ -119,13 +118,17 @@ function App() {
 
   }
 
-  function onDeleteTaskClick(taskId) {
-    const updateTasks = tasks.filter((task) => {
-      if (taskId !== task.id)
-        return task;
-    });
+  async function onDeleteTaskClick(taskId) {
+    const {data, error} = await nhost.graphql.request(DELETE_TASK, {tb_task_id: taskId});
 
-    setTasks(updateTasks);
+    if (error) {
+      console.log("ERRO AO DELETAR: ", error);
+    }
+    else {
+      console.log("✅ TASK DELETADA COM SUCESSO: ", data);
+    }
+
+
   }
 
   return (
